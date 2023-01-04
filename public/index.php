@@ -1,9 +1,5 @@
 <?php
-require_once "../vendor/autoload.php";
-?>
 
-<h1>Server on Robson!</h1>
+require "bootstrap.php";
 
-<?php
-
-echo TESTE;
+router();

@@ -12,7 +12,8 @@
             "app\\":"app"
         },
         "files": [
-            "app/helpers/constants.php"
+            "app/helpers/constants.php",
+            "app/routers/router.php"
         ]
     }
 }
