@@ -9,11 +9,10 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "app\\":"app"
+            "App\\":"app"
         },
         "files": [
-            "app/helpers/constants.php",
-            "app/routers/router.php"
+            
         ]
     }
 }
