@@ -26,19 +26,39 @@ function regularExpressionMatchArrayRoutes($uri, $routes)
     );
 }
 
+function params($uri, $matchedUri)
+{
+    if (!empty($matchedUri)) {
+        $matchedToGetParams = array_keys($matchedUri)[0];
+        return array_diff(
+            explode('/', ltrim($uri, '/')),
+            explode('/', ltrim($matchedToGetParams, '/')),
+        );
+    }
+
+    return [];
+}
+
 function router()
 {
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
     $routes = routers();
 
-    $matchadUri = exactMatchUriInArrayRoutes($uri, $routes);
+    $matchedUri = exactMatchUriInArrayRoutes($uri, $routes);
 
-    if (empty($matchadUri)) {
-        $matchadUri = regularExpressionMatchArrayRoutes($uri, $routes);
+    if (empty($matchedUri)) {
+        $matchedUri = regularExpressionMatchArrayRoutes($uri, $routes);
+
+        $params = params($uri, $matchedUri);
+            
+        echo "<pre>"; 
+        print_r($params);
+        die();
+
     }
 
-    echo "<pre>"; 
-    print_r($matchadUri);
+    // echo "<pre>"; 
+    // print_r($matchedUri);
     die();
 }
